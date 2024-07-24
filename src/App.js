@@ -1,23 +1,67 @@
-import logo from './logo.svg';
+import React from 'react';
+import CandlestickChart from './CandlestickChart';
+import BarMenu from "./BarMenu";
+import banner from './Баннер bitshit.png';
+import banner2 from './Баннер bitshit 2.png';
 import './App.css';
+
+function generateRandomPrice(base, percentage) {
+  const randomPercentage = (Math.random() * 2 * percentage) - percentage;
+  return base + (base * randomPercentage);
+}
+
+function roundToTwoDecimals(value) {
+  return parseFloat(value.toFixed(2));
+}
+
+function generateCandleData(startDate) {
+  const startDateObj = new Date(startDate);
+  const currentDate = new Date();
+  const numCandles = Math.ceil((currentDate - startDateObj) / (1000 * 60 * 60 * 24)); // Number of days between startDate and current date
+  const candles = [];
+  let previousClose = Math.floor(Math.random() * 31) + 70; // Initial open price between 70 and 100
+
+  for (let i = 0; i < numCandles; i++) {
+    const time = new Date(startDateObj);
+    time.setDate(startDateObj.getDate() + i);
+
+    const open = i === 0 ? previousClose : candles[i - 1].close;
+    const close = roundToTwoDecimals(generateRandomPrice(open, 0.1)); // Close within ±10% of open
+    const high = roundToTwoDecimals(Math.max(open, close) + (Math.random() * 0.04 * Math.max(open, close))); // High 1-4% above max(open, close)
+    const low = roundToTwoDecimals(Math.min(open, close) - (Math.random() * 0.04 * Math.min(open, close))); // Low 1-4% below min(open, close))
+
+    const candle = {
+      time: time.toISOString().split('T')[0], // Ensure the date is formatted correctly
+      open: roundToTwoDecimals(open),
+      high: high,
+      low: low,
+      close: close,
+    };
+
+    candles.push(candle);
+  }
+
+  return candles;
+}
+
+// Example usage
+const startDate = '2023-04-01';
+const initialData = generateCandleData(startDate);
+console.log(initialData);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img src={banner} alt="Banner" className="banner" />
+      <div className="content">
+        <div className="chart-container">
+          <CandlestickChart data={initialData} />
+        </div>
+        <div className="menu-container">
+          <BarMenu />
+        </div>
+      </div>
+      <img src={banner2} alt="Banner" className="banner" />
     </div>
   );
 }
