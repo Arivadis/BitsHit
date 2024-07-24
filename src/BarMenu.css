@@ -1,0 +1,57 @@
+.trading-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%; /* Double the height */
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.info-text {
+  font-size: 1.5rem;
+  color: #333;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  width: 48%;
+  text-align: center;
+}
+
+.button-section {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+}
+
+.trade-button {
+  font-size: 2.4rem; /* Double the font size */
+  padding: 45px 75px; /* Double the padding */
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.buy-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.sell-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.trade-button:hover {
+  opacity: 0.8;
+}
