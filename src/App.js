@@ -1,6 +1,6 @@
 import React from 'react';
 import CandlestickChart from './CandlestickChart';
-import BarMenu from "./BarMenu";
+import BarMenu from './BarMenu';
 import banner from './Баннер bitshit.png';
 import banner2 from './Баннер bitshit 2.png';
 import './App.css';
@@ -10,8 +10,8 @@ function generateRandomPrice(base, percentage) {
   return base + (base * randomPercentage);
 }
 
-function roundToTwoDecimals(value) {
-  return parseFloat(value.toFixed(2));
+function roundToThreeDecimals(value) {
+  return parseFloat(value.toFixed(3));
 }
 
 function generateCandleData(startDate) {
@@ -26,13 +26,13 @@ function generateCandleData(startDate) {
     time.setDate(startDateObj.getDate() + i);
 
     const open = i === 0 ? previousClose : candles[i - 1].close;
-    const close = roundToTwoDecimals(generateRandomPrice(open, 0.1)); // Close within ±10% of open
-    const high = roundToTwoDecimals(Math.max(open, close) + (Math.random() * 0.04 * Math.max(open, close))); // High 1-4% above max(open, close)
-    const low = roundToTwoDecimals(Math.min(open, close) - (Math.random() * 0.04 * Math.min(open, close))); // Low 1-4% below min(open, close))
+    const close = roundToThreeDecimals(generateRandomPrice(open, 0.1)); // Close within ±10% of open
+    const high = roundToThreeDecimals(Math.max(open, close) + (Math.random() * 0.05 * Math.max(open, close))); // High 1-4% above max(open, close)
+    const low = roundToThreeDecimals(Math.min(open, close) - (Math.random() * 0.05 * Math.min(open, close))); // Low 1-4% below min(open, close)
 
     const candle = {
       time: time.toISOString().split('T')[0], // Ensure the date is formatted correctly
-      open: roundToTwoDecimals(open),
+      open: roundToThreeDecimals(open),
       high: high,
       low: low,
       close: close,
@@ -43,6 +43,7 @@ function generateCandleData(startDate) {
 
   return candles;
 }
+
 
 // Example usage
 const startDate = '2023-04-01';
