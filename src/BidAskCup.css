@@ -1,0 +1,55 @@
+.bid-ask-cup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  height: 95%;
+  font-family: Arial, sans-serif;
+}
+
+.ask-cup, .bid-cup {
+  width: 100%;
+}
+
+.ask-row, .bid-row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 4px;
+  margin: 2px 0;
+  border-radius: 3px;
+}
+
+.current-price {
+  font-size: 1.5em;
+  margin: 10px 0;
+  color: whitesmoke; /* Green color for current price */
+}
+
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 0;
+  border-radius: 3px;
+}
+
+.ask-row .fill {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.bid-row .fill {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

@@ -7,7 +7,7 @@
 
 .banner {
   width: 100%;
-  height: auto;
+  height: 150%;
 }
 
 .content {
@@ -18,7 +18,7 @@
 }
 
 .chart-container {
-  flex: 2; /* 2/3 of the available space */
+  flex: 1.5; /* 2/3 of the available space */
   padding: 20px;
   box-sizing: border-box;
 }

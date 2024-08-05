@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CandlestickChart from './CandlestickChart';
 import BarMenu from './BarMenu';
-import banner from './Баннер bitshit.png';
-import banner2 from './Баннер bitshit 2.png';
+import BidAskCup from './BidAskCup';
+import banner from './BT-1.png';
+import banner2 from './BT-2.png';
+import Modal from './Modal';
 import './App.css';
 
 function generateRandomPrice(base, percentage) {
@@ -44,22 +46,46 @@ function generateCandleData(startDate) {
   return candles;
 }
 
-
-// Example usage
 const startDate = '2023-04-01';
 const initialData = generateCandleData(startDate);
-console.log(initialData);
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [currentPrice, setCurrentPrice] = useState(initialData[initialData.length - 1].close);
+
+  useEffect(() => {
+    // Check local storage for username and capital
+    const storedUsername = localStorage.getItem('username');
+    const storedCapital = localStorage.getItem('capital');
+
+    if (storedUsername && storedCapital) {
+      setShowModal(false);
+    } else {
+      setShowModal(true);
+    }
+  }, []);
+
+  const handleContinue = () => {
+    setShowModal(false);
+  };
+
+  const handlePriceUpdate = (newPrice) => {
+    setCurrentPrice(newPrice);
+  };
+
   return (
     <div className="App">
+      {showModal && <Modal onContinue={handleContinue} />}
       <img src={banner} alt="Banner" className="banner" />
       <div className="content">
         <div className="chart-container">
-          <CandlestickChart data={initialData} />
+          <CandlestickChart data={initialData} onPriceUpdate={handlePriceUpdate} />
         </div>
         <div className="menu-container">
           <BarMenu />
+        </div>
+        <div className="bid-ask-cup-container">
+          <BidAskCup currentPrice={currentPrice} />
         </div>
       </div>
       <img src={banner2} alt="Banner" className="banner" />

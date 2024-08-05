@@ -4,25 +4,23 @@ import { createChart } from 'lightweight-charts';
 const mult_up = 100; // Multiplier for growing values (percent)
 const mult_down = 100; // Multiplier for falling values (percent)
 
-// Function to generate a random interval between 200ms and 1500ms
 const getRandomInterval = () => {
-  return Math.floor(Math.random() * (1500 - 200 + 1)) + 200; // <-- This line computes the interval
+  return Math.floor(Math.random() * (1500 - 200 + 1)) + 200;
 };
 
 const roundToThreeDecimals = (value) => {
   return parseFloat(value.toFixed(3));
 };
 
-const CandlestickChart = ({ data }) => {
+const CandlestickChart = ({ data, onPriceUpdate }) => {
   const chartContainerRef = useRef();
-  const chartRef = useRef(); // Reference for the chart instance
-  const candlestickSeriesRef = useRef(); // Reference for the candlestick series
+  const chartRef = useRef();
+  const candlestickSeriesRef = useRef();
   const [chartData, setChartData] = useState(data);
-  const intervalRef = useRef(); // Reference for the interval ID
+  const intervalRef = useRef();
 
   useEffect(() => {
     if (!chartRef.current) {
-      // Initialize chart only if not already initialized
       const chart = createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
         height: chartContainerRef.current.clientHeight,
@@ -31,11 +29,9 @@ const CandlestickChart = ({ data }) => {
     }
 
     if (!candlestickSeriesRef.current) {
-      // Add candlestick series only if not already added
       const candlestickSeries = chartRef.current.addCandlestickSeries();
       candlestickSeriesRef.current = candlestickSeries;
 
-      // Apply price format to candlestick series
       candlestickSeriesRef.current.applyOptions({
         priceFormat: {
           type: 'price',
@@ -45,16 +41,11 @@ const CandlestickChart = ({ data }) => {
       });
     }
 
-    // Set initial data
     candlestickSeriesRef.current.setData(chartData);
 
-    return () => {
-      // Clean up chart instance if necessary
-      // (No need to remove the chart instance in this use case)
-    };
+    return () => {};
   }, [chartData]);
 
-  // Function to update the last candle
   const updateLastCandle = (newCandle) => {
     const updatedData = [...chartData];
     const lastCandleIndex = updatedData.length - 1;
@@ -67,21 +58,19 @@ const CandlestickChart = ({ data }) => {
     };
     updatedData[lastCandleIndex] = updatedCandle;
     setChartData(updatedData);
-    // Update the series data without resetting the chart
     candlestickSeriesRef.current.setData(updatedData);
+    onPriceUpdate(roundToThreeDecimals(newCandle.close));
   };
 
   useEffect(() => {
     const updateChart = () => {
       const lastCandle = chartData[chartData.length - 1];
-      let randomFactor = Math.random() - 0.5; // Random factor between -0.5 and 0.5
+      let randomFactor = Math.random() - 0.5;
 
       let updated_close;
       if (randomFactor >= 0) {
-        // Growth
         updated_close = 1 + (randomFactor / 250) * (mult_up / 100);
       } else {
-        // Fall
         updated_close = 1 + (randomFactor / 250) * (mult_down / 100);
       }
 
@@ -92,13 +81,11 @@ const CandlestickChart = ({ data }) => {
         close: roundToThreeDecimals(newClose),
       });
 
-      // Set a new interval with a random duration
       clearInterval(intervalRef.current);
-      intervalRef.current = setInterval(updateChart, getRandomInterval()); // <-- This line uses the computed interval
+      intervalRef.current = setInterval(updateChart, getRandomInterval());
     };
 
-    // Initialize the interval with a random duration
-    intervalRef.current = setInterval(updateChart, getRandomInterval()); // <-- This line sets the initial interval
+    intervalRef.current = setInterval(updateChart, getRandomInterval());
 
     return () => {
       clearInterval(intervalRef.current);

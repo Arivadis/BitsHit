@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './BarMenu.css';
+import BidAskCup from'./BidAskCup.js';
 
 class BarMenu extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class BarMenu extends Component {
           <button className="trade-button buy-button" onClick={this.handleBuy}>Buy</button>
           <button className="trade-button sell-button" onClick={this.handleSell}>Sell</button>
         </div>
+
       </div>
     );
   }
