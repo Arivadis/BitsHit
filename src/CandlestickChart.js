@@ -24,6 +24,16 @@ const CandlestickChart = ({ data, onPriceUpdate }) => {
       const chart = createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
         height: chartContainerRef.current.clientHeight,
+
+        layout: {
+            background: { color: '#000' },
+            textColor: '#DDD',
+        },
+        grid: {
+            vertLines: { color: '#444' },
+            horzLines: { color: '#444' },
+
+    }
       });
       chartRef.current = chart;
     }

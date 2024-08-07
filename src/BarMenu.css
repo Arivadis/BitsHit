@@ -3,26 +3,27 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%; /* Double the height */
-  padding: 20px;
+  height: 100%;
+  padding: 0; /* Remove padding if you want elements closer to the edges */
   box-sizing: border-box;
   border: 1px solid black;
 }
 
 .info-section {
   display: flex;
+  margin-top: 0; /* Remove margin-top to move up */
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduce margin-bottom if necessary */
 }
 
 .info-text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #333;
-  padding: 10px;
+  padding: 5px; /* Reduce padding if needed */
   background-color: #f0f0f0;
   border-radius: 5px;
-  width: 48%;
+  width: 45%;
   text-align: center;
 }
 
@@ -33,9 +34,9 @@
 }
 
 .trade-button {
-  font-size: 2.4rem; /* Double the font size */
-  padding: 3px 75px; /* Double the padding */
-  margin: 0 10px;
+  font-size: 2.0rem;
+  padding: 10px 30px; /* Adjust padding to fit the new size */
+  margin: 0 5px; /* Adjust margin if needed */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -54,4 +55,16 @@
 
 .trade-button:hover {
   opacity: 0.8;
+}
+
+.user-info-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px; /* Reduce padding if needed */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1000;
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CandlestickChart from './CandlestickChart';
 import BarMenu from './BarMenu';
 import BidAskCup from './BidAskCup';
+import UserInfoOverlay from './UserInfoOverlay';
 import banner from './BT-1.png';
 import banner2 from './BT-2.png';
 import Modal from './Modal';
@@ -52,6 +53,8 @@ const initialData = generateCandleData(startDate);
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [currentPrice, setCurrentPrice] = useState(initialData[initialData.length - 1].close);
+  const [username, setUsername] = useState('');
+  const [capital, setCapital] = useState('');
 
   useEffect(() => {
     // Check local storage for username and capital
@@ -59,6 +62,8 @@ function App() {
     const storedCapital = localStorage.getItem('capital');
 
     if (storedUsername && storedCapital) {
+      setUsername(storedUsername);
+      setCapital(storedCapital);
       setShowModal(false);
     } else {
       setShowModal(true);
@@ -66,6 +71,11 @@ function App() {
   }, []);
 
   const handleContinue = () => {
+    const storedUsername = localStorage.getItem('username');
+    const storedCapital = localStorage.getItem('capital');
+
+    setUsername(storedUsername);
+    setCapital(storedCapital);
     setShowModal(false);
   };
 
@@ -76,6 +86,7 @@ function App() {
   return (
     <div className="App">
       {showModal && <Modal onContinue={handleContinue} />}
+      <UserInfoOverlay username={username} capital={capital} />
       <img src={banner} alt="Banner" className="banner" />
       <div className="content">
         <div className="chart-container">

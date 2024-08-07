@@ -1,0 +1,18 @@
+/* UserInfoOverlay.css */
+.user-info-overlay {
+  position: absolute;
+  height: 45px;
+  top: 1px;
+  right: 1px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: lightyellow;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+
+}
+.bold-big-number{
+    font-size: 20px;
+  font-weight: bold;
+}

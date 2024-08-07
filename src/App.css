@@ -15,17 +15,53 @@
   width: 100%;
   height: calc(100vh - 2 * 100px); /* Adjusted to account for the banners */
   box-sizing: border-box;
+  background-color: black;
 }
 
 .chart-container {
-  flex: 1.5; /* 2/3 of the available space */
-  padding: 20px;
+  flex: 10; /* 80% of the available space */
+  padding: 5px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
-.menu-container {
-  flex: 1; /* 1/3 of the available space */
-  padding: 20px;
+.tv-lightweight-charts {
+  width: 100%;
+  height: 100%;
+}
+
+.trading-panel {
+  flex: 1; /* Adjusted to a smaller width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  background-color: black;
+}
+
+.bid-ask-cup-container {
+  flex: 3; /* 20% of the available space */
+  padding: 5px;
   box-sizing: border-box;
   border-left: 1px solid black;
+}
+
+.chart-container, .menu-container, .bid-ask-cup-container {
+  margin: 5px; /* Optional: Add some margin around the containers */
+}
+
+.bid-ask-cup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(5,30,15,0.6);
+  color: wheat;
+  padding: 5px;
+  border-radius: 5px;
+  height: 100%; /* Take full height of the container */
+  font-family: Arial, sans-serif;
 }

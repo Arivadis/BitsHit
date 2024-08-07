@@ -30,18 +30,17 @@ class BarMenu extends Component {
 
   render() {
     return (
-      <div className="trading-panel">
-        <h2>Trading Panel</h2>
-        <div className="info-section">
-          <p className="info-text"><strong>Current Profit:</strong> ${this.state.currentProfit}</p>
-          <p className="info-text"><strong>Current Capital:</strong> ${this.state.currentCapital}</p>
-        </div>
-        <div className="button-section">
-          <button className="trade-button buy-button" onClick={this.handleBuy}>Buy</button>
-          <button className="trade-button sell-button" onClick={this.handleSell}>Sell</button>
-        </div>
+        <div className="trading-panel">
+          <div className="info-section">
+            <p className="info-text"><strong>Current Profit:</strong> ${this.state.currentProfit}</p>
+            <p className="info-text"><strong>Current Capital:</strong> ${this.state.currentCapital}</p>
+          </div>
+          <div className="button-section">
+            <button className="trade-button buy-button" onClick={this.handleBuy}>Buy</button>
+            <button className="trade-button sell-button" onClick={this.handleSell}>Sell</button>
+          </div>
 
-      </div>
+        </div>
     );
   }
 }

@@ -3,11 +3,14 @@
   flex-direction: column;
   align-items: center;
   background-color: black;
-  color: white;
   padding: 10px;
   border-radius: 5px;
   height: 95%;
   font-family: Arial, sans-serif;
+}
+.orderBook{
+  font-weight: bold;
+  color: azure;
 }
 
 .ask-cup, .bid-cup {

@@ -42,7 +42,9 @@ const BidAskCup = ({ currentPrice }) => {
 
   return (
     <div className="bid-ask-cup">
+      <div className="orderBook">Order Book</div>
       <div className="ask-cup">
+
         {askData.map((item, index) => (
           <div key={index} className="ask-row">
             <div className="fill" style={{ width: getFillWidth(item.size) }}></div>
