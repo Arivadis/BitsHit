@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/BitsHit/static/css/main.d67b73b5.css",
+    "main.js": "/BitsHit/static/js/main.bc9b9781.js",
+    "static/js/453.41accdb0.chunk.js": "/BitsHit/static/js/453.41accdb0.chunk.js",
+    "static/media/BT-2.png": "/BitsHit/static/media/BT-2.6cecd17fdfbb1dc3abce.png",
+    "static/media/BT-1.png": "/BitsHit/static/media/BT-1.62578829e89eed837c25.png",
+    "index.html": "/BitsHit/index.html",
+    "main.d67b73b5.css.map": "/BitsHit/static/css/main.d67b73b5.css.map",
+    "main.bc9b9781.js.map": "/BitsHit/static/js/main.bc9b9781.js.map",
+    "453.41accdb0.chunk.js.map": "/BitsHit/static/js/453.41accdb0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d67b73b5.css",
+    "static/js/main.bc9b9781.js"
+  ]
+}
