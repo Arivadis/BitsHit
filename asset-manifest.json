@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/bitshit/static/css/main.94b3d071.css",
-    "main.js": "/bitshit/static/js/main.0846bd15.js",
-    "static/js/453.41accdb0.chunk.js": "/bitshit/static/js/453.41accdb0.chunk.js",
-    "static/media/BT-2.png": "/bitshit/static/media/BT-2.6cecd17fdfbb1dc3abce.png",
-    "static/media/BT-1.png": "/bitshit/static/media/BT-1.62578829e89eed837c25.png",
-    "index.html": "/bitshit/index.html",
-    "main.94b3d071.css.map": "/bitshit/static/css/main.94b3d071.css.map",
-    "main.0846bd15.js.map": "/bitshit/static/js/main.0846bd15.js.map",
-    "453.41accdb0.chunk.js.map": "/bitshit/static/js/453.41accdb0.chunk.js.map"
+    "main.css": "/BitsHit/static/css/main.94b3d071.css",
+    "main.js": "/BitsHit/static/js/main.d55f3933.js",
+    "static/js/453.41accdb0.chunk.js": "/BitsHit/static/js/453.41accdb0.chunk.js",
+    "static/media/BT-2.png": "/BitsHit/static/media/BT-2.6cecd17fdfbb1dc3abce.png",
+    "static/media/BT-1.png": "/BitsHit/static/media/BT-1.62578829e89eed837c25.png",
+    "index.html": "/BitsHit/index.html",
+    "main.94b3d071.css.map": "/BitsHit/static/css/main.94b3d071.css.map",
+    "main.d55f3933.js.map": "/BitsHit/static/js/main.d55f3933.js.map",
+    "453.41accdb0.chunk.js.map": "/BitsHit/static/js/453.41accdb0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.94b3d071.css",
-    "static/js/main.0846bd15.js"
+    "static/js/main.d55f3933.js"
   ]
 }
