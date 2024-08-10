@@ -16,6 +16,9 @@ class BarMenu extends Component {
     this.handleSell = this.handleSell.bind(this);
     this.handleClosePosition = this.handleClosePosition.bind(this);
   }
+  hasOpenPositions() {
+    return this.state.positions.length > 0;
+  }
 
   handleBuy() {
     const entryPrice = this.props.currentPrice;

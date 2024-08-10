@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CandlestickChart from './CandlestickChart';
 import BarMenu from './BarMenu';
 import BidAskCup from './BidAskCup';
@@ -56,6 +56,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [capital, setCapital] = useState(parseFloat(localStorage.getItem('capital')) || 10000); // Set initial capital from storage or a default value
   const [seriesRef, setSeriesRef] = useState(null);
+  const barMenuRef = useRef(null);
 
   const handleCapitalUpdate = (newCapital) => {
     setCapital(newCapital);
@@ -105,10 +106,11 @@ function App() {
             data={initialData}
             onPriceUpdate={handlePriceUpdate}
             onSeriesRefReady={handleSeriesRefReady}
+            hasOpenPositions={() => barMenuRef.current?.hasOpenPositions()} // Pass the function here
           />
         </div>
         <div className="menu-container">
-          <BarMenu currentPrice={currentPrice} seriesRef={seriesRef} onCapitalUpdate={handleCapitalUpdate} />
+          <BarMenu currentPrice={currentPrice} seriesRef={seriesRef} onCapitalUpdate={handleCapitalUpdate} ref={barMenuRef} />
         </div>
         <div className="bid-ask-cup-container">
           <BidAskCup currentPrice={currentPrice} />

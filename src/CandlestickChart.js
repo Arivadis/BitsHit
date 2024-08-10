@@ -14,7 +14,7 @@ const roundToThreeDecimals = (value) => {
   return parseFloat(value.toFixed(3));
 };
 
-const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
+const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady, hasOpenPositions, currency = 'USD' }) => {
   const chartContainerRef = useRef();
   const chartRef = useRef();
   const candlestickSeriesRef = useRef();
@@ -25,6 +25,11 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
   const [localMultDown, setLocalMultDown] = useState(mult_down);
   const [localAfterEntryUp, setLocalAfterEntryUp] = useState(after_entry_up);
   const [localAfterEntryDown, setLocalAfterEntryDown] = useState(after_entry_down);
+  const currentLocale = window.navigator.languages[0];
+  const myPriceFormatter = Intl.NumberFormat(currentLocale, {
+    style: 'currency',
+    currency: currency, // Currency for data points
+  }).format;
 
   useEffect(() => {
     if (!chartRef.current) {
@@ -47,7 +52,18 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
           vertLines: { color: '#444' },
           horzLines: { color: '#444' },
         },
+        priceScale: {
+          borderColor: '#71649C'
+        },
+        timeScale: {
+          borderColor: '#71649C',
+          barSpacing: 15
+        },
+        localization: {
+          priceFormatter: myPriceFormatter, // Apply the custom price formatter here
+        }
       });
+
       chartRef.current = chart;
     }
 
@@ -72,7 +88,7 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
     candlestickSeriesRef.current.setData(chartData);
 
     return () => {};
-  }, [chartData, onSeriesRefReady]);
+  }, [chartData, onSeriesRefReady, myPriceFormatter]);
 
   const updateLastCandle = (newCandle) => {
     const updatedData = [...chartData];
@@ -95,11 +111,21 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
       const lastCandle = chartData[chartData.length - 1];
       let randomFactor = Math.random() - 0.5;
 
+      console.log('Has open positions:', hasOpenPositions()); // Log the result of hasOpenPositions
+
       let updated_close;
       if (randomFactor >= 0) {
-        updated_close = 1 + (randomFactor / 250) * (mult_up / 100);
+        if (hasOpenPositions()) {
+          updated_close = 1 + (randomFactor / 250) * ((mult_up + after_entry_up) / 100);
+        } else {
+          updated_close = 1 + (randomFactor / 250) * (mult_up / 100);
+        }
       } else {
-        updated_close = 1 + (randomFactor / 250) * (mult_down / 100);
+        if (hasOpenPositions()) {
+          updated_close = 1 + (randomFactor / 250) * ((mult_down + after_entry_down) / 100);
+        } else {
+          updated_close = 1 + (randomFactor / 250) * (mult_down / 100);
+        }
       }
 
       const newClose = lastCandle.close * updated_close;
@@ -118,7 +144,7 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
     return () => {
       clearInterval(intervalRef.current);
     };
-  }, [chartData]);
+  }, [chartData, hasOpenPositions]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
