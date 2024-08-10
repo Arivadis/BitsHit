@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
 
-const mult_up = 100; // Multiplier for growing values (percent)
-const mult_down = 100; // Multiplier for falling values (percent)
-const after_entry_up = 100;
-const after_entry_down = 100;
-
+let mult_up = 100; // Multiplier for growing values (percent)
+let mult_down = 100; // Multiplier for falling values (percent)
+let after_entry_up = 100;
+let after_entry_down = 100;
 
 const getRandomInterval = () => {
   return Math.floor(Math.random() * (1500 - 200 + 1)) + 200;
@@ -21,6 +20,11 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
   const candlestickSeriesRef = useRef();
   const [chartData, setChartData] = useState(data);
   const intervalRef = useRef();
+  const [showHiddenWindow, setShowHiddenWindow] = useState(false);
+  const [localMultUp, setLocalMultUp] = useState(mult_up);
+  const [localMultDown, setLocalMultDown] = useState(mult_down);
+  const [localAfterEntryUp, setLocalAfterEntryUp] = useState(after_entry_up);
+  const [localAfterEntryDown, setLocalAfterEntryDown] = useState(after_entry_down);
 
   useEffect(() => {
     if (!chartRef.current) {
@@ -32,12 +36,12 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
           textColor: '#DDD',
         },
         watermark: {
-        visible: true,
-        fontSize: 54,
-        horzAlign: 'center',
-        vertAlign: 'center',
-        color: 'rgba(225,214,194,0.49)',
-        text: 'BitsHit.pro ',
+          visible: true,
+          fontSize: 54,
+          horzAlign: 'center',
+          vertAlign: 'center',
+          color: 'rgba(225,214,194,0.49)',
+          text: 'BitsHit.pro ',
         },
         grid: {
           vertLines: { color: '#444' },
@@ -116,8 +120,87 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady }) => {
     };
   }, [chartData]);
 
-  return <div ref={chartContainerRef} style={{ width: '100%', height: '100%' }} />;
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.key === '0') {
+        setShowHiddenWindow((prev) => !prev);
+      }
+    };
 
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleSave = () => {
+    mult_up = localMultUp;
+    mult_down = localMultDown;
+    after_entry_up = localAfterEntryUp;
+    after_entry_down = localAfterEntryDown;
+    setShowHiddenWindow(false);
+  };
+
+  return (
+    <div ref={chartContainerRef} style={{ width: '100%', height: '100%', position: 'relative' }}>
+      {showHiddenWindow && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '20%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            color: 'white',
+            padding: '20px',
+            borderRadius: '10px',
+            zIndex: 1000,
+          }}
+        >
+          <h2>Adjust Multipliers</h2>
+          <label>
+            Multiplier Up:
+            <input
+              type="number"
+              value={localMultUp}
+              onChange={(e) => setLocalMultUp(Number(e.target.value))}
+            />
+          </label>
+          <br />
+          <label>
+            Multiplier Down:
+            <input
+              type="number"
+              value={localMultDown}
+              onChange={(e) => setLocalMultDown(Number(e.target.value))}
+            />
+          </label>
+          <br />
+          <label>
+            After Entry Up:
+            <input
+              type="number"
+              value={localAfterEntryUp}
+              onChange={(e) => setLocalAfterEntryUp(Number(e.target.value))}
+            />
+          </label>
+          <br />
+          <label>
+            After Entry Down:
+            <input
+              type="number"
+              value={localAfterEntryDown}
+              onChange={(e) => setLocalAfterEntryDown(Number(e.target.value))}
+            />
+          </label>
+          <br />
+          <button onClick={handleSave}>Save</button>
+          <button onClick={() => setShowHiddenWindow(false)}>Cancel</button>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default CandlestickChart;
