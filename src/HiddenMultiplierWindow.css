@@ -1,0 +1,30 @@
+.hidden-multiplier-window {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hidden-multiplier-content label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.hidden-multiplier-content input {
+  width: 100px;
+}
+
+.hidden-multiplier-content button {
+  padding: 10px;
+  margin-top: 10px;
+}

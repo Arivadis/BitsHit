@@ -1,0 +1,40 @@
+.position {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  padding: 10px;
+  border: 1px solid darkblue;
+  margin-bottom: 10px;
+  font-size: 12px;
+  box-sizing: border-box;
+  background-color: midnightblue;
+  border-radius: 3px;
+}
+
+.position-row {
+  display: flex;
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Align items vertically in the center */
+  overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.position-item {
+  margin: 0 5px; /* Add horizontal spacing between items */
+  flex-shrink: 0; /* Prevent items from shrinking */
+}
+
+.position button {
+  margin-top: 10px; /* Space between text row and button */
+  padding: 5px;
+  cursor: pointer;
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  align-self: flex-start; /* Align button to the left */
+}
+
+.position button:hover {
+  background-color: #ff0000;
+}

@@ -54,8 +54,13 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [currentPrice, setCurrentPrice] = useState(initialData[initialData.length - 1].close);
   const [username, setUsername] = useState('');
-  const [capital, setCapital] = useState('');
+  const [capital, setCapital] = useState(parseFloat(localStorage.getItem('capital')) || 10000); // Set initial capital from storage or a default value
+  const [seriesRef, setSeriesRef] = useState(null);
 
+  const handleCapitalUpdate = (newCapital) => {
+    setCapital(newCapital);
+    localStorage.setItem('capital', newCapital); // Update local storage
+  };
   useEffect(() => {
     // Check local storage for username and capital
     const storedUsername = localStorage.getItem('username');
@@ -83,6 +88,12 @@ function App() {
     setCurrentPrice(newPrice);
   };
 
+  const handleSeriesRefReady = (ref) => {
+    setSeriesRef(ref);
+  };
+
+
+
   return (
     <div className="App">
       {showModal && <Modal onContinue={handleContinue} />}
@@ -90,10 +101,14 @@ function App() {
       <img src={banner} alt="Banner" className="banner" />
       <div className="content">
         <div className="chart-container">
-          <CandlestickChart data={initialData} onPriceUpdate={handlePriceUpdate} />
+          <CandlestickChart
+            data={initialData}
+            onPriceUpdate={handlePriceUpdate}
+            onSeriesRefReady={handleSeriesRefReady}
+          />
         </div>
         <div className="menu-container">
-          <BarMenu />
+          <BarMenu currentPrice={currentPrice} seriesRef={seriesRef} onCapitalUpdate={handleCapitalUpdate} />
         </div>
         <div className="bid-ask-cup-container">
           <BidAskCup currentPrice={currentPrice} />
