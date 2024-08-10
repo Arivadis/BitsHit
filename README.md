@@ -1,4 +1,9 @@
-<<<<<<< HEAD
+If you have opportunity to help me building this joke-exchange -> I would be happy to accept your help.
+
+
+![image](https://github.com/user-attachments/assets/7107e15c-c9d6-49e1-b0a8-bcba20c48f20)
+
+
 # BitsHit
 BitsHit is a crypto loosing exchange created to have fun
 =======
@@ -72,4 +77,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> master
+
