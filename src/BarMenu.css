@@ -6,7 +6,8 @@
   justify-content: center;
   align-items: center;
 }
-.info-text{
+
+.info-text {
   color: lightyellow;
   font-size: 20px;
 }
@@ -21,11 +22,25 @@
   box-sizing: border-box;
 }
 
-
 .info-section {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.position-size-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-label {
+  color: lightyellow; /* Set light yellow color for text labels */
+  margin-right: 10px;
 }
 
 .button-section {
@@ -34,30 +49,31 @@
   margin-bottom: 20px;
 }
 
-
 .positions-section {
   display: flex;
   flex-direction: column;
 }
 
-.positions-scrollable, .closed-positions-scrollable {
+.positions-scrollable,
+.closed-positions-scrollable {
   max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 10px;
 }
-.positions-scrollable {
 
+.positions-scrollable {
   padding: 10px;
   border-radius: 5px;
 }
+
 .closed-positions {
   max-height: 200px; /* Set a maximum height to prevent overflow */
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Hide horizontal overflow */
 }
-.closed-positions-scrollable {
 
+.closed-positions-scrollable {
   padding: 10px;
   border-radius: 5px;
 }
@@ -115,3 +131,11 @@
   scrollbar-color: #666 #333;
 }
 
+.input-label {
+  color: lightyellow; /* Set light yellow color for text labels */
+  margin-right: 10px;
+}
+
+.position-size-container .max-label {
+  margin-left: 20px; /* Add margin to the left of the Max label */
+}
