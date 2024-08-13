@@ -5,7 +5,7 @@ If you have opportunity to help me building this joke-exchange -> I would be hap
 
 
 # BitsHit
-BitsHit is a crypto loosing exchange created to have fun
+#### BitsHit is a crypto loosing exchange created to have fun
 =======
 # Getting Started with Create React App
 
