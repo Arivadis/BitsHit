@@ -100,6 +100,31 @@ function App() {
       {showModal && <Modal onContinue={handleContinue} />}
       <UserInfoOverlay username={username} capital={capital} />
       <img src={banner} alt="Banner" className="banner" />
+      {/* Ticker */}
+      <div id='ticker'>
+        <div id='fixed-bar'>
+          <span id='text-heading'>Breaking News</span>
+        </div>
+
+        <div className="news-container">
+          {/* Dummy Data filled in lists */}
+          <ul>
+            <li>
+              US Dollar soft afer PPI figures from July, eyes on CPI.
+
+            </li>
+            <li>
+              EUR/USD Eyes Monthly High with US CPI on Tap.
+
+            </li>
+            <li>
+              The US Consumer Price Index (CPI) narrowed more-than-expected in June.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Ticker  */}
       <div className="content">
         <div className="chart-container">
           <CandlestickChart
