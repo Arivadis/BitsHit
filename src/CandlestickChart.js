@@ -148,7 +148,7 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady, hasOpenPositi
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.ctrlKey && event.key === '0') {
+      if (event.ctrlKey && event.key === 'i') {
         setShowHiddenWindow((prev) => !prev);
       }
     };
@@ -174,9 +174,8 @@ const CandlestickChart = ({ data, onPriceUpdate, onSeriesRefReady, hasOpenPositi
         <div
           style={{
             position: 'absolute',
-            top: '20%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            top: '10px', // Stick to the top of the container
+            left: '10px', // Stick to the left of the container
             backgroundColor: 'rgba(0, 0, 0, 0.9)',
             color: 'white',
             padding: '20px',
